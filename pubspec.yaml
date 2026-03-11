@@ -1,0 +1,39 @@
+name: better_focus
+description: "BetterFocus — minimalist deep-work timer. 1% better every day."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.3.5
+
+  # Local persistence
+  shared_preferences: ^2.3.2
+
+  # Confetti celebration
+  confetti: ^0.7.0
+
+  # Haptic feedback
+  flutter_haptic_feedback: ^1.0.0
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  riverpod_generator: ^2.4.3
+  custom_lint: ^0.7.5
+  riverpod_lint: ^2.4.0
+
+flutter:
+  uses-material-design: true
