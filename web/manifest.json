@@ -1,11 +1,11 @@
 {
-    "name": "better_focus",
-    "short_name": "better_focus",
+    "name": "1% Better",
+    "short_name": "1% Better",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0D0D0D",
+    "theme_color": "#0D0D0D",
+    "description": "Minimalist deep-work timer. 1% better every day.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum TimerPhase { idle, work, shortBreak, longBreak }
@@ -45,13 +46,17 @@ class TimerState {
 }
 
 class TimerNotifier extends Notifier<TimerState> {
-  static const _workDuration = 25 * 60;
-  static const _shortBreakDuration = 5 * 60;
+  // Debug mode: 5s work / 3s break for rapid testing
+  static const _workDuration = kDebugMode ? 5 : 25 * 60;
+  static const _shortBreakDuration = kDebugMode ? 3 : 5 * 60;
 
   Timer? _ticker;
 
   @override
-  TimerState build() => const TimerState();
+  TimerState build() {
+    ref.onDispose(() => _ticker?.cancel());
+    return const TimerState();
+  }
 
   void setGoal(String goal) {
     state = state.copyWith(goal: goal);
@@ -118,11 +123,6 @@ class TimerNotifier extends Notifier<TimerState> {
     state = state.copyWith(remainingSeconds: state.remainingSeconds - 1);
   }
 
-  @override
-  void dispose() {
-    _ticker?.cancel();
-    super.dispose();
-  }
 }
 
 final timerProvider = NotifierProvider<TimerNotifier, TimerState>(

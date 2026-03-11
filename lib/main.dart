@@ -33,7 +33,7 @@ class BetterFocusApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BetterFocus',
+      title: '1% Better',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark,
       home: const FocusScreen(),

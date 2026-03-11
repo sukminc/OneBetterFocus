@@ -1,7 +1,7 @@
-# Project: BetterFocus
+# Project: 1% Better (OnePercentBetter)
 ## Vision: "1% Better Every Day"
 
-BetterFocus is a minimalist deep-work engine designed to eliminate digital noise and foster consistency. As a Senior Data Engineer-led project, the codebase must prioritize clean architecture, observability, and performance.
+1% Better is a minimalist deep-work engine designed to eliminate digital noise and foster consistency. As a Senior Data Engineer-led project, the codebase must prioritize clean architecture, observability, and performance.
 
 ---
 
@@ -10,6 +10,7 @@ BetterFocus is a minimalist deep-work engine designed to eliminate digital noise
 - **State Management:** Riverpod 2.x (NotifierProvider pattern, no code-gen in Phase 1)
 - **Local Persistence:** shared_preferences (local-first; Supabase sync in Phase 2)
 - **Backend/Storage:** Supabase (Phase 2 — Auth, PostgreSQL)
+- **App Name:** "1% Better" (display), package: `better_focus` (internal Dart/bundle ID)
 - **Design Philosophy:** Minimalist, high-contrast dark theme, distraction-free.
 
 ---
