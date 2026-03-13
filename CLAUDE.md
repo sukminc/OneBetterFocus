@@ -1,135 +1,48 @@
-# Project: 1% Better (OnePercentBetter)
-## Vision: "1% Better Every Day"
+# CLAUDE.md — 1% Better Focus
 
-1% Better is a minimalist deep-work engine designed to eliminate digital noise and foster consistency. As a Senior Data Engineer-led project, the codebase must prioritize clean architecture, observability, and performance.
+## Brand Hub
+**onepercentbetter.poker** — this project is listed there as `1% Better Focus`.
+If it's removed from the site, it's no longer a brand asset.
+Owner: Chris S. Yoon · github.com/sukminc
 
----
+## What this is
+Minimalist deep-work Pomodoro timer. Flutter app for iOS, Android, Web.
+Status: `building` (MVP done, Supabase sync + App Store release pending)
+Slug on hub: `onepercent-focus` · Repo: `sukminc/OneBetterFocus`
 
-## 🛠 Tech Stack & Architecture
-- **Frontend:** Flutter 3.35+ (Web, iOS, Android)
-- **State Management:** Riverpod 2.x (NotifierProvider pattern, no code-gen in Phase 1)
-- **Local Persistence:** shared_preferences (local-first; Supabase sync in Phase 2)
-- **Backend/Storage:** Supabase (Phase 2 — Auth, PostgreSQL)
-- **App Name:** "1% Better" (display), package: `better_focus` (internal Dart/bundle ID)
-- **Design Philosophy:** Minimalist, high-contrast dark theme, distraction-free.
+## Core Philosophy
+Same brand DNA as the hub — marginal gains compounded.
+Easy consumer app = revenue stream that funds the core analytics platform.
 
----
+## Stack
+- Flutter 3.x (iOS, Android, Web)
+- Dart
+- Supabase (Phase 2 — auth + session sync)
+- local-first: shared_preferences for streaks/sessions
 
-## 📁 Project Structure
+## Key Architecture
+- `TimerNotifier` — pure Dart, zero UI dependencies
+- `TimerState` — immutable, copyWith pattern
+- `SessionStorage` abstraction — swap to Supabase without touching features
+- Feature flags for premium gating (`customTimeSets`, `customReflection`)
 
-```
-lib/
-├── core/
-│   ├── theme/app_theme.dart          # Dark palette, typography
-│   ├── storage/session_storage.dart  # Local persistence abstraction
-│   └── config/feature_flags.dart     # Freemium feature gating
-├── features/
-│   ├── timer/
-│   │   ├── providers/timer_provider.dart   # Pure Dart timer engine (Riverpod)
-│   │   └── widgets/
-│   │       ├── focus_screen.dart           # Main screen with dimming overlay
-│   │       └── circular_progress.dart      # Arc progress ring
-│   ├── session/
-│   │   └── widgets/reflection_sheet.dart  # Post-session emoji bottom sheet
-│   └── milestones/
-│       ├── providers/milestone_provider.dart  # Streak + session count
-│       └── widgets/milestone_bar.dart         # Footer stats display
-└── main.dart                                  # App entry, ProviderScope setup
-```
+## MVP Features (Phase 1 — Done)
+- 25/5 Pomodoro timer
+- Dimming overlay during focus sessions
+- Confetti on completion
+- Emoji self-reflection bottom sheet
+- Streak + session count (local-first)
 
----
+## Roadmap
+- Phase 2: Supabase auth + async session sync
+- Phase 3: Custom time sets (IAP / RevenueCat)
+- Phase 4: App Store + Google Play release
 
-## 🎯 Core Features (MVP — Phase 1 Complete)
-1. **Goal Setting:** Text input for current session's focus goal.
-2. **Deep Work Timer:** 25-min work / 5-min break Pomodoro, decoupled from UI.
-3. **Dimming Animation:** UI dims to 35% opacity during active focus sessions.
-4. **Circular Progress Ring:** Thin arc indicator around timer display.
-5. **Celebration:** Confetti burst (confetti package) on session completion.
-6. **Self-Reflection:** 😊/🙁 bottom sheet post-session.
-7. **Milestones:** Persistent streak + total session count via shared_preferences.
-8. **Premium Gating:** `FeatureFlags` class ready for custom time sets (Phase 3).
-
----
-
-## 🏗 Architecture Decisions
-- **Timer engine is pure Dart** — `TimerNotifier` has zero UI dependencies.
-- **TimerState is immutable** — `copyWith` pattern, easy to test.
-- **SessionStorage is an abstraction** — swap to Supabase without touching features.
-- **ProviderScope override** — `SharedPreferences` injected at app root for testability.
-- **AnimatedOpacity** for dimming (800ms ease) — no package needed, buttery smooth.
-
----
-
-## 📜 Development Principles
-
-### 1. Zero Noise UI
-- No ads, no social feeds, no unnecessary navigation.
-- Dark palette: `#0D0D0D` bg, `#E8D5B7` warm-white accent.
-- Focus sessions are sacred — no interruptions during timer (UI dims, no modals).
-
-### 2. Clean Code Standard
-- **Fail-fast:** Providers throw `UnimplementedError` if not overridden (e.g., SharedPreferences).
-- **Local-First:** All data writes go to `SessionStorage`; Supabase sync is async and additive.
-- **Modular:** Timer logic, UI, and storage are fully decoupled.
-
-### 3. Business Logic
-- **Freemium Ready:** `FeatureFlags.customTimeSets` and `FeatureFlags.customReflection` gate premium features.
-- **Privacy:** No analytics, no tracking. Data owned by the user.
-
----
-
-## 🚀 Roadmap
-
-### ✅ Phase 1 — Local Flutter MVP
-- [x] Flutter project scaffold (iOS, Android, Web)
-- [x] Riverpod state management
-- [x] Immutable `TimerState` with `TimerNotifier`
-- [x] Circular progress ring widget
-- [x] Dimming overlay during focus sessions
-- [x] Confetti on completion
-- [x] Emoji reflection bottom sheet
-- [x] `SessionStorage` (local-first)
-- [x] Milestone bar (streak + total sessions)
-- [x] Feature flags structure
-
-### 🔲 Phase 2 — Supabase Integration
-- [ ] Supabase auth (email + Apple/Google)
-- [ ] Async session sync to PostgreSQL
-- [ ] Replace `SessionStorage` with `SupabaseSessionRepository`
-- [ ] Remote feature flag support
-
-### 🔲 Phase 3 — Custom Time Sets & Reflection (Premium)
-- [ ] Custom work/break duration picker (behind `FeatureFlags.customTimeSets`)
-- [ ] Custom emoji sets for reflection (behind `FeatureFlags.customReflection`)
-- [ ] In-App Purchase integration (RevenueCat or native)
-
-### 🔲 Phase 4 — Public Release
-- [ ] 7-day session heatmap / analytics widget
-- [ ] App icon, splash screen, store assets
-- [ ] TestFlight (iOS) + Google Play Internal Track
-- [ ] Web deployment (Vercel or Firebase Hosting)
-
----
-
-## 🔑 Key Commands
+## Commands
 ```bash
-flutter pub get                  # Install dependencies
-flutter run -d chrome            # Run on web
-flutter run                      # Run on connected device
-flutter build apk                # Android release
-flutter build ipa                # iOS release
+flutter pub get
+flutter run -d chrome     # web
+flutter run               # connected device
+flutter build apk         # Android
+flutter build ipa         # iOS
 ```
-
----
-
-## 📦 Dependencies
-| Package | Version | Purpose |
-|---|---|---|
-| flutter_riverpod | ^2.6.1 | State management |
-| shared_preferences | ^2.3.2 | Local persistence |
-| confetti | ^0.7.0 | Celebration effect |
-| flutter_haptic_feedback | ^1.0.0 | Mobile haptics |
-
----
-
-"High-stakes engineering for high-stakes focus."
