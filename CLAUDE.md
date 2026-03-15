@@ -1,48 +1,53 @@
 # CLAUDE.md — 1% Better Focus
 
-## Brand Hub
-**onepercentbetter.poker** — this project is listed there as `1% Better Focus`.
-If it's removed from the site, it's no longer a brand asset.
-Owner: Chris S. Yoon · github.com/sukminc
+## Repo Role
 
-## What this is
-Minimalist deep-work Pomodoro timer. Flutter app for iOS, Android, Web.
-Status: `building` (MVP done, Supabase sync + App Store release pending)
-Slug on hub: `onepercent-focus` · Repo: `sukminc/OneBetterFocus`
+Supporting product in the main `1% Better` brand.
 
-## Core Philosophy
-Same brand DNA as the hub — marginal gains compounded.
-Easy consumer app = revenue stream that funds the core analytics platform.
+This is a small-focus-loop product:
 
-## Stack
-- Flutter 3.x (iOS, Android, Web)
-- Dart
-- Supabase (Phase 2 — auth + session sync)
-- local-first: shared_preferences for streaks/sessions
+- start a session
+- complete a timer
+- log a lightweight reflection
+- preserve local progress
 
-## Key Architecture
-- `TimerNotifier` — pure Dart, zero UI dependencies
-- `TimerState` — immutable, copyWith pattern
-- `SessionStorage` abstraction — swap to Supabase without touching features
-- Feature flags for premium gating (`customTimeSets`, `customReflection`)
+It supports the same simple-product thesis as `1% Better Today`.
+It is not a poker repo.
 
-## MVP Features (Phase 1 — Done)
-- 25/5 Pomodoro timer
-- Dimming overlay during focus sessions
-- Confetti on completion
-- Emoji self-reflection bottom sheet
-- Streak + session count (local-first)
+## Repo Identity
 
-## Roadmap
-- Phase 2: Supabase auth + async session sync
-- Phase 3: Custom time sets (IAP / RevenueCat)
-- Phase 4: App Store + Google Play release
+- Repo: `sukminc/one-percent-better-focus`
+- Landing slug: `onepercent-focus`
+- Public role: supporting product, not primary hero
+
+## Guardrails
+
+- Keep the scope narrow and local-first.
+- Preserve the repo's strongest signal: simple loop, understandable UX, quick iteration.
+- Do not turn this into a broad productivity suite.
+- Cloud sync, auth, and premium features are phase-two items, not the current story.
+
+## Current Truth
+
+Trust `README.md` for implemented features and status.
+
+Current shape:
+
+- Flutter app
+- Riverpod state management
+- local persistence via `shared_preferences`
+- timer + milestones + reflection flow
+
+## Source Of Truth
+
+- Shared brand rules: `/Users/chrisyoon/GitHub/one-percent-better-os/brand.json`
+- Shared project state: `/Users/chrisyoon/GitHub/one-percent-better-os/projects.json`
+- Public profile story: `/Users/chrisyoon/GitHub/one-percent-better-os/public_profile.json`
 
 ## Commands
+
 ```bash
 flutter pub get
-flutter run -d chrome     # web
-flutter run               # connected device
-flutter build apk         # Android
-flutter build ipa         # iOS
+flutter run
+flutter run -d chrome
 ```
